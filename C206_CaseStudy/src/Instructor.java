@@ -29,5 +29,13 @@ public class Instructor {
 	public void setInstructorPassword(String instructorPassword) {
 		this.instructorPassword = instructorPassword;
 	}
+	public String toString() {
+		String output = "";
+		 output += "Name: " + getInstructorName() + "Email: " +getInstructorEmail() + "Password: "+getInstructorPassword();
+		
+		 return output;
+	}
 }
+
+
 

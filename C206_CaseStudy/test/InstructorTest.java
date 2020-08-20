@@ -32,24 +32,45 @@ public class InstructorTest {
 		//Test that the instructor list size is 0 before adding any instructors
 		assertEquals("Test that the instructor list size is 0 before adding any instructors",0 ,InstructorDB.instructorList.size());
 		
-		//Test that the size of category list is 1 after adding a category
+		//Test that the size of instructor list is 1 after adding a instructor
 		InstructorDB.addInstructor(in1);
-		assertEquals("Test that the size of category list is 1 after adding a category", 1, InstructorDB.instructorList.size());
+		assertEquals("Test that the size of instructor list is 1 after adding a instructor", 1, InstructorDB.instructorList.size());
 		
 		//Test that the first element in instructor list is the same as the Instructor object added.
 		assertSame("Test that the first element in instructor list is the same as the Instructor object added.", in1, InstructorDB.instructorList.get(0));
 	}
 	@Test
-	public void ViewAllInstructorTest() {
+	public void viewAllInstructorTest() {
 		
 		//Test if the list is not null but empty
 		assertNotNull("Test if the list is not null but empty", InstructorDB.instructorList);
 		
-		//Test if the of Instructor viewed from the InstructorDB is empty 
+		//Test if the list of Instructor list is empty
+		assertEquals("Test if the Instructot list is empty", 0 , InstructorDB.instructorList.size());
 		
+		//Test that Instructor arraylist is 2 
+		InstructorDB.addInstructor(in1);
+		InstructorDB.addInstructor(in2);
+		assertEquals("Test that Instructor arraylist is 2", 2 , InstructorDB.instructorList.size());
+		
+		//when
+		InstructorDB.instructorList.add(in1);
+		InstructorDB.instructorList.add(in2);
+		
+		//then
+		assertEquals(InstructorDB.instructorList.size(), 2);
+		assertEquals(InstructorDB.instructorList.get(0), in1);
+		assertEquals(InstructorDB.instructorList.get(1), in2);;
+	}	
+	@Test
+	public void deleteInstructorTest() {
+		
+		//Test that the size of Instructor list is 0 after deleting a Instructor 
+		assertEquals("Test that the size of Instructor list is 0 after deleting a Instructor" , 0 , InstructorDB.instructorList.size());
+		
+	}
 		
 	}
 
 
-	}
 
