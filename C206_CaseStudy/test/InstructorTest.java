@@ -7,7 +7,8 @@ import org.junit.Test;
 public class InstructorTest {
 	
 	private Instructor in1; 
-	private Instructor in2; 
+	private Instructor in2;
+	private Instructor in3; 
 
 	@Before
 	public void setUp() throws Exception {
@@ -53,7 +54,7 @@ public class InstructorTest {
 		InstructorDB.addInstructor(in2);
 		assertEquals("Test that Instructor list is 2", 2 , InstructorDB.instructorList.size());
 		
-		//Test that the first element in category list is the same as the Instructor object added
+		//Test that the first element in instructor  list is the same as the Instructor object added
 		assertSame("Test that the first element in instructor list is the same as the Instructor object added", in1, InstructorDB.instructorList.get(0));
 		
 	}	
@@ -71,8 +72,24 @@ public class InstructorTest {
 		assertEquals("Test that instructor list size is 1 after deleting an instructor", 0, InstructorDB.instructorList.size());
 		
 	}
+	@Test
+	public void updateInstructorTest() {
+		//add instructor into list
+		InstructorDB.addInstructor(in1);
+		InstructorDB.addInstructor(in2);
+		in3 = new Instructor ("Lucas", "tan123456@gmail.com","123456");
+		
+		assertSame(in3,InstructorDB.instructorList.get(0));
+		
+		//Test that the instructor list is not empty 
+		assertEquals("Test that the instructor list is not empty", 0 , InstructorDB.instructorList.size());
+		
+		//Test that instructor list is not null
+		assertNotNull("Test that instructor list is not null", InstructorDB.instructorList);
 		
 	}
+	
+}
 
 
 
