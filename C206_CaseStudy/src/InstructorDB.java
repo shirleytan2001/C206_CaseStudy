@@ -7,8 +7,11 @@ public class InstructorDB {
 	public static void addInstructor(Instructor in) {
 		
 		instructorList.add(in);
+	}
+
+	public static void delInstructor(Instructor in) {
+		
 		instructorList.remove(in);
 		
 	}
-
 }
