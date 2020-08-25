@@ -14,4 +14,7 @@ public class InstructorDB {
 		instructorList.remove(in);
 		
 	}
+	public static void updateInstructor(Instructor in, Instructor instructor) {
+		instructorList.set(0, instructor);
+	}
 }
