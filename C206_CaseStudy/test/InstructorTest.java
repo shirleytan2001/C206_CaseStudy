@@ -77,13 +77,10 @@ public class InstructorTest {
 		//add instructor into list
 		InstructorDB.addInstructor(in1);
 		InstructorDB.addInstructor(in2);
-		in3 = new Instructor ("Lucas", "tan123456@gmail.com","123456");
-		
+		in3 = new Instructor ("Lucas", "lucas123456@gmail.com","123456");
+		InstructorDB.updateInstructor(in3);
 		assertSame(in3,InstructorDB.instructorList.get(0));
-		
-		//Test that the instructor list is not empty 
-		assertEquals("Test that the instructor list is not empty", 0 , InstructorDB.instructorList.size());
-		
+				
 		//Test that instructor list is not null
 		assertNotNull("Test that instructor list is not null", InstructorDB.instructorList);
 		
