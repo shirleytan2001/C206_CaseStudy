@@ -20,7 +20,7 @@ public class InstructorDB {
 			option = Helper.readInt("Enter option > ");
 		
 			if(option == 1) {
-			
+				
 				InstructorDB.viewAllInstructor(instructorList);
 			
 			} else if (option == 2) {
@@ -38,39 +38,96 @@ public class InstructorDB {
 				
 				InstructorDB.viewAllInstructor(InstructorDB.instructorList);
 				String instructorName = Helper.readString("Enter Instructor Name to delete: ");
-				InstructorDB.delInstructor(instructorName);
 				
 				boolean exist = false;
 				
 				for (int i = 0; i < instructorList.size(); i++) {
+					
 					if (instructorName.contentEquals(instructorList.get(i).getInstructorName())) {
+						
 						instructorList.remove(i);
 						System.out.println("Instructor deleted.");
 						exist = true;
 					}
 				}
+				
 				if (exist == false) {
 					System.out.println("No identified instructor.");
 				}
-				
 			
 			} else if (option == 4) {
+				InstructorDB.menu2();
+				option = Helper.readInt("Enter element that needed to be changed > ");
 				
-				
+				if (option == 1) {
+					String currentName = Helper.readString("Enter current name > ");
+					
+					if (currentName.equals(instructorList.get(0).getInstructorName())) { 
+						String newName = Helper.readString ("Enter new name > "); 
+						instructorList.get(0).setInstructorName(newName);
+						System.out.println("Name updated.");
+				}
+			}
+				if (option == 2) {
+					String currentEmail = Helper.readString("Enter current email > ");
+					
+					if (currentEmail.contentEquals(instructorList.get(0).getInstructorEmail())) {
+						String newEmail = Helper.readString("Enter new email > ");
+						instructorList.get(0).setInstructorEmail(newEmail);
+						System.out.println("Email updated.");
+					}
+				}
+				if (option == 3) {
+					String user =  Helper.readString("Enter username > ") ; 
+					boolean isFound = false; 
+					
+					for (int i = 0; i <instructorList.size(); i++) { 
+						
+						if (user.equalsIgnoreCase(instructorList.get(i).getInstructorName())) {
+							String currentPassword = Helper.readString("Enter current password > ");
+							
+						if (currentPassword.equals(instructorList.get(i).getInstructorPassword())) { 
+							String newPassword = Helper.readString ("Enter new password > "); 
+							instructorList.get(i).setInstructorPassword(newPassword);
+							
+						}else { 
+							
+							System.out.println("The password is incorect."); 
+							
+						}
+						
+						isFound = true; 
+						break;				
+						
+						}
+						
+					}
+					if (isFound == false) { 
+						System.out.println("This  user does not exist."); 
+					}
+					if (option == 4) {
+						System.out.println("Good Bye!");
+					}
+				}
 			
-				
-			
-			} else if (option == 5) {
+			}  if (option == 5) {
 			
 				System.out.println("Good Bye!");
 			}
+			
+	}
+}
 		
-		}
-		
-	} //end of main class
+//end of main class
 	
-	private static void delInstructor(String instructorName) {
-		// TODO Auto-generated method stub
+	private static void menu2() {
+		Helper.line(60,"=");
+		System.out.println("DETAILS MENU");
+		Helper.line(60,"=");
+		System.out.println("1. Change name");
+		System.out.println("2. Change email");
+		System.out.println("3. Change password");
+		System.out.println("4. Quit");
 		
 	}
 
@@ -81,7 +138,7 @@ public class InstructorDB {
 		System.out.println("1. View all instructors");
 		System.out.println("2. Add instructor");
 		System.out.println("3. Delete instructor");
-		System.out.println("4. Update instrcutor");
+		System.out.println("4. Update instructor details");
 		System.out.println("5. Quit");
 	}
 		
@@ -91,13 +148,16 @@ public class InstructorDB {
 	}
 		
 	public static void updateInstructor(Instructor instructor) {
+		Helper.line(60, "-");
+		System.out.println("Update Instructor password");
+		Helper.line(60,"-");
 		instructorList.set(0, instructor);
 		
 	}
 	
 	public static void delInstructor(Instructor in) {
 		Helper.line(60, "-");
-		System.out.println("Delete Instructor");
+		System.out.println("DELETE INSTRUCTOR ");
 		Helper.line(60,"-");
 		instructorList.remove(in);
 		
