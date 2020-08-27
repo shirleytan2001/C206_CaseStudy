@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 public class InstructorDB {
 	
+	private static final int OPTION_UPDATEINSTRUCTORDETAILS = 4;
+	private static final int OPTION_DELETEINSTRUCTOR = 3;
+	private static final int OPTION_ADDNEWINSTRUCTOR = 2;
+	private static final int OPTION_VIEWALLINSTRUCTOR = 1;
+	private static final int OPTION_QUIT = 5;
 	public static ArrayList<Instructor> instructorList = new ArrayList <Instructor>();
 	
 	public static void main(String[] args) {
@@ -14,16 +19,16 @@ public class InstructorDB {
 	
 		int option = 0;
 		
-		while (option != 5) {
+		while (option != OPTION_QUIT) {
 			
 			InstructorDB.menu();
 			option = Helper.readInt("Enter option > ");
 		
-			if(option == 1) {
+			if(option == OPTION_VIEWALLINSTRUCTOR) {
 				
 				InstructorDB.viewAllInstructor(instructorList);
 			
-			} else if (option == 2) {
+			} else if (option == OPTION_ADDNEWINSTRUCTOR) {
 				
 				String instructorName = Helper.readString("Enter Instructor Name > ");
 				String instructorEmail = Helper.readString("Enter Instructor Email > ");
@@ -34,7 +39,7 @@ public class InstructorDB {
 				InstructorDB.addInstructor(newInstructor);
 				System.out.println("Instructor added into system.");
 			
-			} else if (option == 3) {
+			} else if (option == OPTION_DELETEINSTRUCTOR) {
 				
 				InstructorDB.viewAllInstructor(InstructorDB.instructorList);
 				String instructorName = Helper.readString("Enter Instructor Name to delete: ");
@@ -43,7 +48,8 @@ public class InstructorDB {
 				
 				for (int i = 0; i < instructorList.size(); i++) {
 					
-					if (instructorName.contentEquals(instructorList.get(i).getInstructorName())) {
+					String instructorName2 = instructorList.get(i).getInstructorName();
+					if (instructorName.contentEquals(instructorName2)) {
 						
 						instructorList.remove(i);
 						System.out.println("Instructor deleted.");
@@ -55,14 +61,15 @@ public class InstructorDB {
 					System.out.println("No identified instructor.");
 				}
 			
-			} else if (option == 4) {
+			} else if (option == OPTION_UPDATEINSTRUCTORDETAILS) {
 				InstructorDB.menu2();
 				option = Helper.readInt("Enter element that needed to be changed > ");
 				
 				if (option == 1) {
 					String currentName = Helper.readString("Enter current name > ");
 					
-					if (currentName.equals(instructorList.get(0).getInstructorName())) { 
+					String instructorName = instructorList.get(0).getInstructorName();
+					if (currentName.equals(instructorName)) { 
 						String newName = Helper.readString ("Enter new name > "); 
 						instructorList.get(0).setInstructorName(newName);
 						System.out.println("Name updated.");
@@ -71,7 +78,8 @@ public class InstructorDB {
 				if (option == 2) {
 					String currentEmail = Helper.readString("Enter current email > ");
 					
-					if (currentEmail.contentEquals(instructorList.get(0).getInstructorEmail())) {
+					String instructorEmail = instructorList.get(0).getInstructorEmail();
+					if (currentEmail.contentEquals(instructorEmail)) {
 						String newEmail = Helper.readString("Enter new email > ");
 						instructorList.get(0).setInstructorEmail(newEmail);
 						System.out.println("Email updated.");
@@ -83,10 +91,12 @@ public class InstructorDB {
 					
 					for (int i = 0; i <instructorList.size(); i++) { 
 						
-						if (user.equalsIgnoreCase(instructorList.get(i).getInstructorName())) {
+						String instructorName = instructorList.get(i).getInstructorName();
+						if (user.equalsIgnoreCase(instructorName)) {
 							String currentPassword = Helper.readString("Enter current password > ");
 							
-						if (currentPassword.equals(instructorList.get(i).getInstructorPassword())) { 
+						String instructorPassword = instructorList.get(i).getInstructorPassword();
+						if (currentPassword.equals(instructorPassword)) { 
 							String newPassword = Helper.readString ("Enter new password > "); 
 							instructorList.get(i).setInstructorPassword(newPassword);
 							
@@ -110,7 +120,7 @@ public class InstructorDB {
 					}
 				}
 			
-			}  if (option == 5) {
+			}  if (option == OPTION_QUIT) {
 			
 				System.out.println("Good Bye!");
 			}
